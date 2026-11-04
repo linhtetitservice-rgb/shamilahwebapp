@@ -500,14 +500,15 @@ export const ShamelaSearchModal: React.FC<ShamelaSearchModalProps> = ({
                         </div>
                       </div>
 
-                      {/* Text Quote Snippet in Jameel Noori Nastaleeq */}
+                      {/* Text Quote Snippet in Classical Amiri Arabic Font */}
                       <div 
-                        className="p-4 rounded-2xl border text-right text-xl sm:text-2xl leading-[2.3] selection:bg-amber-500/30 whitespace-pre-wrap"
+                        className="font-amiri p-4 sm:p-5 rounded-2xl border text-right text-2xl sm:text-3xl font-bold leading-[2.1] selection:bg-amber-500/30 whitespace-pre-wrap arabic-prominent"
                         style={{
                           backgroundColor: 'var(--color-bg-app)',
                           borderColor: 'var(--color-border-theme)',
                           color: 'var(--color-text-primary)',
                         }}
+                        lang="ar"
                       >
                         {item.text}
                       </div>

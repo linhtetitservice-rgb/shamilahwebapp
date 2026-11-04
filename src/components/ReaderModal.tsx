@@ -142,12 +142,12 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
             </div>
             <div className="truncate">
               <div className="flex items-center gap-2">
-                <h2 className="text-xl sm:text-2xl font-bold truncate leading-[1.9]">
+                <h2 className="font-amiri text-2xl sm:text-3xl font-bold truncate leading-normal" lang="ar">
                   {book.titleAr}
                 </h2>
                 {book.shamelaId && (
                   <span 
-                    className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-mono font-bold"
+                    className="hidden sm:inline-block px-2.5 py-0.5 rounded-lg text-xs font-mono font-bold"
                     style={{
                       backgroundColor: 'var(--color-badge-bg)',
                       color: 'var(--color-accent)',
@@ -157,7 +157,7 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
                   </span>
                 )}
               </div>
-              <p className="text-xs opacity-80 truncate leading-[1.8]">
+              <p className="font-nastaleeq text-sm opacity-90 truncate leading-[1.8] mt-0.5">
                 {book.titleUr || book.titleMm} {book.authorUr ? `• (${book.authorUr})` : ''}
               </p>
             </div>
@@ -345,10 +345,11 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
                 </div>
               ) : pageContent ? (
                 <div className="space-y-6">
-                  {/* Arabic / Urdu Text in Jameel Noori Nastaleeq Typography */}
+                  {/* Classical Arabic Text in Amiri Typography - BOLD & PROMINENT */}
                   <div 
-                    className="text-2xl sm:text-3xl leading-[2.4] text-right font-normal tracking-wide selection:bg-amber-400/30 whitespace-pre-wrap"
+                    className="font-amiri text-2xl sm:text-3xl lg:text-4xl leading-[2.2] sm:leading-[2.5] text-right font-bold tracking-normal selection:bg-amber-400/30 whitespace-pre-wrap arabic-prominent"
                     style={{ color: 'var(--color-text-primary)' }}
+                    lang="ar"
                   >
                     {pageContent.text}
                   </div>

@@ -79,14 +79,14 @@ export const Header: React.FC<HeaderProps> = ({
 
             <div>
               <div className="flex items-center gap-2.5">
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight flex items-center gap-2 leading-[1.9]">
-                  <span>المكتبة الشاملة</span>
-                  <span className="text-base sm:text-lg font-normal opacity-85">
+                <h1 className="font-amiri text-2xl sm:text-3xl lg:text-4xl font-bold tracking-normal flex items-center gap-2.5 leading-[1.6]">
+                  <span lang="ar" className="drop-shadow-sm">المكتبة الشاملة</span>
+                  <span className="font-nastaleeq text-base sm:text-lg font-normal opacity-90">
                     (مکتبہ شاملہ ویب لائبریری)
                   </span>
                 </h1>
                 <span 
-                  className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-semibold border"
+                  className="hidden sm:inline-flex items-center px-2.5 py-1 rounded-xl text-xs font-bold border"
                   style={{
                     backgroundColor: 'var(--color-accent-subtle)',
                     borderColor: 'var(--color-accent)',
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
                   کلاؤڈ سنک
                 </span>
               </div>
-              <p className="text-xs sm:text-sm opacity-80 leading-[1.8]">
+              <p className="font-nastaleeq text-sm sm:text-base opacity-90 leading-[2] mt-0.5">
                 مکتبہ شاملہ کی کتب کی فہرست، زمرہ جات کی درجہ بندی اور براہ راست آن لائن مطالعہ
               </p>
             </div>
@@ -297,9 +297,9 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* Search Bar Row with Dual Search */}
-        <div className="mt-3.5">
+        <div className="mt-4">
           <div className="relative flex items-center">
-            <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 opacity-50" />
+            <Search className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 opacity-60" />
             <input
               type="text"
               value={searchQuery}
@@ -310,7 +310,7 @@ export const Header: React.FC<HeaderProps> = ({
                 }
               }}
               placeholder="کتاب کا نام (عربی یا اردو)، مصنف کا نام، یا شاملہ ID درج کریں... (Enter دبا کر براہ راست شاملہ میں تلاش کریں)"
-              className="w-full pr-10 pl-32 sm:pl-48 py-2.5 rounded-2xl border text-xs sm:text-sm focus:outline-none focus:ring-2 transition-all shadow-inner font-nastaleeq leading-[1.8]"
+              className="w-full pr-12 pl-36 sm:pl-52 py-3 rounded-2xl border text-sm sm:text-base font-semibold focus:outline-none focus:ring-2 transition-all shadow-inner font-nastaleeq leading-[2]"
               style={{
                 backgroundColor: 'var(--color-bg-card)',
                 borderColor: 'var(--color-border-theme)',
@@ -318,11 +318,11 @@ export const Header: React.FC<HeaderProps> = ({
               }}
             />
             
-            <div className="absolute left-2 flex items-center gap-1.5">
+            <div className="absolute left-2.5 flex items-center gap-2">
               {searchQuery && (
                 <button
                   onClick={() => onSearchChange('')}
-                  className="text-[11px] opacity-60 hover:opacity-100 px-1.5 py-0.5 rounded"
+                  className="text-xs opacity-70 hover:opacity-100 px-2 py-1 rounded-lg"
                 >
                   صاف کریں
                 </button>
@@ -330,11 +330,11 @@ export const Header: React.FC<HeaderProps> = ({
 
               <button
                 onClick={() => onOpenShamelaSearch(searchQuery)}
-                className="flex items-center gap-1 px-3 py-1 rounded-xl text-xs font-bold text-white shadow-sm transition-all hover:scale-105 active:scale-95"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md transition-all hover:scale-105 active:scale-95"
                 style={{ backgroundColor: 'var(--color-accent)' }}
                 title="شاملہ کے اصل ڈیٹا بیس میں براہ راست تلاش کریں"
               >
-                <Globe2 className="w-3.5 h-3.5" />
+                <Globe2 className="w-4 h-4 ml-1" />
                 <span>شاملہ سرچ ↗</span>
               </button>
             </div>

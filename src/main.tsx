@@ -3,9 +3,10 @@ import App from './App.tsx';
 import { ErrorBoundary } from './components/ErrorBoundary.tsx';
 import './index.css';
 
-const rootElement = document.getElementById('root');
+function mountApp() {
+  const rootElement = document.getElementById('root');
+  if (!rootElement) return;
 
-if (rootElement) {
   try {
     const root = createRoot(rootElement);
     root.render(
@@ -25,5 +26,11 @@ if (rootElement) {
       </div>
     `;
   }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mountApp);
+} else {
+  mountApp();
 }
 

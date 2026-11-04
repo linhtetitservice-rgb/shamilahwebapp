@@ -63,23 +63,23 @@ export const BookCard: React.FC<BookCardProps> = ({
       <div className="p-4 sm:p-5 pb-3">
         {/* Header row with Category, Shamela ID & Star */}
         <div className="flex items-center justify-between gap-2 mb-3">
-          <div className="flex items-center gap-1.5 flex-wrap">
+          <div className="flex items-center gap-2 flex-wrap">
             {category && (
               <span 
-                className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border leading-[1.8]"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs sm:text-sm font-bold border leading-[1.8]"
                 style={{
                   backgroundColor: 'var(--color-badge-bg)',
                   borderColor: 'var(--color-accent)',
                   color: 'var(--color-accent)',
                 }}
               >
-                <Layers className="w-3 h-3" />
-                <span className="truncate max-w-[130px]">{category.nameUr || category.nameAr}</span>
+                <Layers className="w-3.5 h-3.5" />
+                <span className="truncate max-w-[150px]">{category.nameUr || category.nameAr}</span>
               </span>
             )}
             {book.shamelaId && (
               <span 
-                className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold border"
+                className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono font-bold border"
                 style={{
                   backgroundColor: 'var(--color-bg-card-subtle)',
                   borderColor: 'var(--color-border-theme)',
@@ -175,36 +175,37 @@ export const BookCard: React.FC<BookCardProps> = ({
           </div>
         </div>
 
-        {/* Book Title with Jameel Noori Nastaleeq */}
+        {/* Book Title with Classical Amiri Arabic Font */}
         <div 
           onClick={() => onOpenReader(book)} 
           className="cursor-pointer group/title"
         >
           <h3 
-            className="text-xl sm:text-2xl font-bold text-right mb-1 line-clamp-2 leading-[2] transition-colors"
+            className="font-amiri text-2xl sm:text-3xl font-bold text-right mb-2 line-clamp-2 leading-[1.7] tracking-normal transition-colors group-hover/title:text-[var(--color-accent)]"
             style={{ color: 'var(--color-text-primary)' }}
+            lang="ar"
           >
             {book.titleAr}
           </h3>
 
           {/* Urdu Subtitle / Title translation */}
           {(book.titleUr || book.titleMm) && (
-            <h4 className="text-xs sm:text-sm font-medium leading-[1.8] line-clamp-1 mb-2 opacity-85">
+            <h4 className="font-nastaleeq text-sm sm:text-base font-semibold leading-[2] line-clamp-1 mb-2.5 opacity-90">
               {book.titleUr || book.titleMm}
             </h4>
           )}
         </div>
 
         {/* Author information */}
-        <div className="space-y-1 mb-3 text-xs opacity-80 leading-[1.8]">
+        <div className="space-y-1 mb-3 leading-[1.8]">
           {book.authorAr && (
-            <p className="text-right text-sm line-clamp-1">
+            <p className="font-amiri text-right text-base sm:text-lg font-bold line-clamp-1 opacity-90" lang="ar">
               {book.authorAr}
             </p>
           )}
           {(book.authorUr || book.authorMm) && (
-            <p className="text-xs line-clamp-1 flex items-center gap-1">
-              <span style={{ color: 'var(--color-accent)' }}>مصنف:</span>
+            <p className="font-nastaleeq text-xs sm:text-sm line-clamp-1 flex items-center gap-1 opacity-80">
+              <span className="font-bold" style={{ color: 'var(--color-accent)' }}>مصنف:</span>
               <span>{book.authorUr || book.authorMm}</span>
             </p>
           )}
@@ -212,10 +213,10 @@ export const BookCard: React.FC<BookCardProps> = ({
 
         {/* Volumes / Pages */}
         {(book.volumes || book.pages) && (
-          <div className="flex items-center gap-2 text-[11px] mb-3">
+          <div className="flex items-center gap-2 text-xs mb-3">
             {book.volumes && (
               <span 
-                className="px-2 py-0.5 rounded-lg border font-medium leading-[1.8]"
+                className="px-2.5 py-1 rounded-lg border font-semibold leading-[1.8]"
                 style={{
                   backgroundColor: 'var(--color-bg-card-subtle)',
                   borderColor: 'var(--color-border-theme)',
@@ -226,7 +227,7 @@ export const BookCard: React.FC<BookCardProps> = ({
             )}
             {book.pages && (
               <span 
-                className="px-2 py-0.5 rounded-lg border font-medium leading-[1.8]"
+                className="px-2.5 py-1 rounded-lg border font-semibold leading-[1.8]"
                 style={{
                   backgroundColor: 'var(--color-bg-card-subtle)',
                   borderColor: 'var(--color-border-theme)',
@@ -273,7 +274,7 @@ export const BookCard: React.FC<BookCardProps> = ({
 
       {/* Card Actions Footer - DIRECT ACCESS */}
       <div 
-        className="p-3 border-t flex items-center justify-between gap-2 mt-auto"
+        className="p-3.5 border-t flex items-center justify-between gap-2.5 mt-auto"
         style={{
           backgroundColor: 'var(--color-bg-card-subtle)',
           borderColor: 'var(--color-border-theme)',
@@ -282,32 +283,32 @@ export const BookCard: React.FC<BookCardProps> = ({
         {/* Quick In-App Preview Button */}
         <button
           onClick={() => onOpenReader(book)}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all hover:scale-102"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all hover:scale-102"
           style={{
             backgroundColor: 'var(--color-bg-card)',
             borderColor: 'var(--color-border-theme)',
           }}
           title="آن لائن مطالعہ کریں"
         >
-          <BookOpen className="w-3.5 h-3.5" style={{ color: 'var(--color-accent)' }} />
-          <span className="leading-[1.8]">مطالعہ</span>
+          <BookOpen className="w-4 h-4 ml-1" style={{ color: 'var(--color-accent)' }} />
+          <span className="leading-[1.8]">مطالعہ کریں</span>
         </button>
 
         {/* Primary Direct Go to Shamela Button */}
         <button
           onClick={handleDirectOpen}
-          className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-white shadow-md transition-all hover:scale-102 active:scale-98"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white shadow-md transition-all hover:scale-102 active:scale-98"
           style={{ backgroundColor: 'var(--color-accent)' }}
           title="مکتبہ شاملہ کی ویب سائٹ پر براہ راست کھولیں"
         >
           <span className="leading-[1.8]">شاملہ ویب ↗</span>
-          <ExternalLink className="w-3.5 h-3.5" />
+          <ExternalLink className="w-4 h-4 mr-0.5" />
         </button>
 
         {/* Copy Link Button */}
         <button
           onClick={handleCopy}
-          className="p-1.5 rounded-xl border transition-colors opacity-80 hover:opacity-100"
+          className="p-2 rounded-xl border transition-colors opacity-80 hover:opacity-100"
           style={{
             backgroundColor: 'var(--color-bg-card)',
             borderColor: 'var(--color-border-theme)',

@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Jameel Noori Nastaleeq';
-  src: url('https://cdn.jsdelivr.net/npm/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2'),
-       url('https://unpkg.com/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+/* 1. Classical Arabic Typography - Amiri Font */
+.font-amiri,
+.font-arabic,
+[lang="ar"],
+.arabic-title,
+.arabic-text,
+.arabic-quote {
+  font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Noto Naskh Arabic', serif !important;
+  font-feature-settings: "cv01" on, "cv02" on;
+  letter-spacing: 0.01em;
 }
 
-@font-face {
-  font-family: 'JameelNooriNastaliq';
-  src: url('https://cdn.jsdelivr.net/npm/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+/* 2. Urdu Calligraphy - Nastaleeq Typography */
+.font-nastaleeq,
+.font-urdu,
+[lang="ur"],
+.urdu-text {
+  font-family: 'Noto Nastaliq Urdu', 'Gulzar', 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Mehr Nastaliq', serif;
+  line-height: 2;
 }
 
 :root {
@@ -34,34 +38,30 @@
 
 @layer base {
   body {
-    font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', 'Plus Jakarta Sans', serif;
+    font-family: 'Noto Nastaliq Urdu', 'Gulzar', 'Amiri', system-ui, sans-serif;
     background-color: var(--color-bg-app);
     color: var(--color-text-primary);
     direction: rtl;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Make sure inputs, buttons and selects have legible font sizes */
+  input, button, select, textarea {
+    font-family: inherit;
   }
 }
 
-/* Jameel Noori Nastaleeq Typography for all Arabic & Urdu text with instant system fallback */
-.font-nastaleeq,
-.font-urdu,
-.font-arabic,
-html,
-body,
-button,
-input,
-select,
-textarea,
-[dir="rtl"],
-[lang="ar"],
-[lang="ur"] {
-  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', 'Urdu Typesetting', 'Mehr Nastaliq', 'Traditional Arabic', system-ui, -apple-system, sans-serif !important;
+/* Distinct high-contrast typography helper classes */
+.arabic-prominent {
+  font-family: 'Amiri', 'Traditional Arabic', serif !important;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Nastaleeq cascading calligraphy text with spacious line height */
 .nastaleeq-text {
-  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', serif;
+  font-family: 'Noto Nastaliq Urdu', 'Gulzar', 'Jameel Noori Nastaleeq', serif;
   line-height: 2.2;
-  word-spacing: 1px;
 }
 
 /* Custom scrollbar for library shelves */
@@ -76,7 +76,7 @@ textarea,
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-accent);
-  opacity: 0.5;
+  opacity: 0.6;
   border-radius: 4px;
 }
 

@@ -78,12 +78,12 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           
           {/* Category Tabs Scrollable */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 no-scrollbar text-xs font-medium">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar text-sm font-semibold">
             
             {/* All Books Tab */}
             <button
               onClick={() => onSelectCategory('all')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl whitespace-nowrap transition-all ${
                 activeCategoryId === 'all'
                   ? 'text-white shadow-md font-bold'
                   : 'opacity-80 hover:opacity-100 hover:scale-102'
@@ -92,10 +92,10 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
                 backgroundColor: activeCategoryId === 'all' ? 'var(--color-accent)' : 'transparent',
               }}
             >
-              <Library className="w-3.5 h-3.5" />
+              <Library className="w-4 h-4 ml-0.5" />
               <span className="leading-[1.8]">تمام کتب</span>
               <span 
-                className="px-1.5 py-0.2 rounded-full text-[10px] bg-black/20 text-white font-mono"
+                className="px-2 py-0.5 rounded-full text-xs bg-black/20 text-white font-mono font-bold"
               >
                 {totalCount}
               </span>
@@ -104,7 +104,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             {/* Favorites Tab */}
             <button
               onClick={() => onSelectCategory('favorites')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap transition-all ${
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl whitespace-nowrap transition-all ${
                 activeCategoryId === 'favorites'
                   ? 'text-white shadow-md font-bold'
                   : 'opacity-80 hover:opacity-100 hover:scale-102'
@@ -113,14 +113,14 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
                 backgroundColor: activeCategoryId === 'favorites' ? '#f59e0b' : 'transparent',
               }}
             >
-              <Star className="w-3.5 h-3.5 fill-current" />
+              <Star className="w-4 h-4 fill-current ml-0.5" />
               <span className="leading-[1.8]">پسندیدہ کتب</span>
-              <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-black/20 text-white font-mono">
+              <span className="px-2 py-0.5 rounded-full text-xs bg-black/20 text-white font-mono font-bold">
                 {favoriteCount}
               </span>
             </button>
 
-            <span className="h-4 w-[1px] opacity-30 mx-1 bg-current" />
+            <span className="h-5 w-[1px] opacity-30 mx-1 bg-current" />
 
             {/* Dynamic Categories */}
             {categories.map((cat) => {
@@ -131,7 +131,7 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
                 <button
                   key={cat.id}
                   onClick={() => onSelectCategory(cat.id)}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl whitespace-nowrap transition-all ${
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl whitespace-nowrap transition-all ${
                     isActive
                       ? 'text-white font-bold shadow-md'
                       : 'opacity-80 hover:opacity-100 hover:scale-102'
@@ -144,10 +144,10 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
                   <span className={isActive ? 'text-white' : undefined} style={!isActive ? { color: 'var(--color-accent)' } : undefined}>
                     {getCategoryIcon(cat.iconName)}
                   </span>
-                  <span className="truncate max-w-[150px] sm:max-w-[210px] leading-[1.8]">
+                  <span className="truncate max-w-[180px] sm:max-w-[240px] leading-[1.8]">
                     {cat.nameUr || cat.nameAr}
                   </span>
-                  <span className="px-1.5 py-0.2 rounded-full text-[10px] bg-black/20 text-white font-mono">
+                  <span className="px-2 py-0.5 rounded-full text-xs bg-black/20 text-white font-mono font-bold">
                     {count}
                   </span>
                 </button>
@@ -157,14 +157,14 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
             {/* Quick Add Category Tab */}
             <button
               onClick={onOpenAddCategory}
-              className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl border whitespace-nowrap transition-colors hover:scale-102"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl border whitespace-nowrap transition-colors hover:scale-102 text-xs sm:text-sm font-bold"
               style={{
                 borderColor: 'var(--color-border-theme)',
                 color: 'var(--color-accent)',
               }}
               title="نیا زمرہ بنائیں"
             >
-              <FolderPlus className="w-3.5 h-3.5" />
+              <FolderPlus className="w-4 h-4" />
               <span className="leading-[1.8]">+ نیا زمرہ</span>
             </button>
 

@@ -98,25 +98,25 @@ export const BookList: React.FC<BookListProps> = ({
                   </button>
                 </td>
 
-                {/* Title in Jameel Noori Nastaleeq */}
+                {/* Title in Amiri Font */}
                 <td className="py-3 px-4">
-                  <div className="text-lg sm:text-xl font-bold leading-[1.9]">
+                  <div className="font-amiri text-xl sm:text-2xl font-bold leading-normal" lang="ar">
                     {book.titleAr}
                   </div>
                   {(book.titleUr || book.titleMm) && (
-                    <div className="text-xs sm:text-sm font-medium opacity-85 leading-[1.8]">
+                    <div className="font-nastaleeq text-sm sm:text-base font-medium opacity-85 leading-[2] mt-0.5">
                       {book.titleUr || book.titleMm}
                     </div>
                   )}
                 </td>
 
-                {/* Author */}
-                <td className="py-3 px-4 opacity-80 leading-[1.8]">
-                  <div className="text-sm font-medium">
+                {/* Author in Amiri Font */}
+                <td className="py-3 px-4 opacity-90 leading-[1.8]">
+                  <div className="font-amiri text-base sm:text-lg font-bold" lang="ar">
                     {book.authorAr || '-'}
                   </div>
                   {(book.authorUr || book.authorMm) && (
-                    <div className="text-xs opacity-80">
+                    <div className="font-nastaleeq text-xs sm:text-sm opacity-80">
                       {book.authorUr || book.authorMm}
                     </div>
                   )}
@@ -126,14 +126,14 @@ export const BookList: React.FC<BookListProps> = ({
                 <td className="py-3 px-4">
                   {cat ? (
                     <span 
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold border leading-[1.8]"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs sm:text-sm font-bold border leading-[1.8]"
                       style={{
                         backgroundColor: 'var(--color-badge-bg)',
                         borderColor: 'var(--color-accent)',
                         color: 'var(--color-accent)',
                       }}
                     >
-                      <Layers className="w-3 h-3 ml-1" />
+                      <Layers className="w-3.5 h-3.5 ml-1" />
                       <span>{cat.nameUr || cat.nameAr}</span>
                     </span>
                   ) : (

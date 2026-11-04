@@ -31,6 +31,7 @@ import { CategoryModal } from './components/CategoryModal';
 import { ReaderModal } from './components/ReaderModal';
 import { BackupModal } from './components/BackupModal';
 import { ShamelaSearchModal } from './components/ShamelaSearchModal';
+import { FeaturedAyahCard } from './components/FeaturedAyahCard';
 
 import { 
   Plus, 
@@ -466,6 +467,9 @@ function LibraryApp() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
+        {/* Featured Inspiration Card - Prominent Amiri Arabic & Urdu Calligraphy */}
+        <FeaturedAyahCard onOpenReader={handleOpenReaderPage} />
+
         {/* Banner with Live Shamela Search Spotlight */}
         <div 
           className="mb-6 p-4 sm:p-5 rounded-3xl border flex flex-col lg:flex-row lg:items-center justify-between gap-4 shadow-sm transition-all"
@@ -548,22 +552,29 @@ function LibraryApp() {
           className="flex items-center justify-between mb-4 pb-2 border-b"
           style={{ borderColor: 'var(--color-border-theme)' }}
         >
-          <div className="flex items-center gap-2">
-            <Library className="w-5 h-5 ml-1" style={{ color: 'var(--color-accent)' }} />
-            <h3 className="text-base sm:text-lg font-bold leading-[1.8]">
+          <div className="flex items-center gap-2.5">
+            <Library className="w-6 h-6 ml-1" style={{ color: 'var(--color-accent)' }} />
+            <h3 className="text-lg sm:text-xl font-bold leading-[1.8]">
               {activeCategory === 'all' && 'تمام کتب کی فہرست (All Books)'}
               {activeCategory === 'favorites' && 'پسندیدہ کتب کی فہرست (Favorite Books)'}
               {activeCategory !== 'all' && activeCategory !== 'favorites' && (
                 <span>
-                  {getCategoryById(activeCategory)?.nameUr || getCategoryById(activeCategory)?.nameAr}{' '}
-                  <span className="text-xs sm:text-sm font-normal opacity-75">
+                  <span>{getCategoryById(activeCategory)?.nameUr || getCategoryById(activeCategory)?.nameAr}</span>{' '}
+                  <span className="font-amiri text-base sm:text-lg font-bold opacity-90 mr-1" lang="ar">
                     ({getCategoryById(activeCategory)?.nameAr})
                   </span>
                 </span>
               )}
             </h3>
-            <span className="text-xs opacity-70 mr-1 leading-[1.8]">
-              ({filteredBooks.length} کتب)
+            <span 
+              className="text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-full border mr-1 leading-[1.8]"
+              style={{
+                backgroundColor: 'var(--color-badge-bg)',
+                borderColor: 'var(--color-accent)',
+                color: 'var(--color-accent)',
+              }}
+            >
+              {filteredBooks.length} کتب
             </span>
           </div>
 
@@ -660,9 +671,9 @@ function LibraryApp() {
                         >
                           <Layers className="w-4 h-4" />
                         </span>
-                        <h4 className="text-base sm:text-lg font-bold flex items-center gap-2 leading-[1.8]">
+                        <h4 className="text-lg sm:text-xl font-bold flex items-center gap-2 leading-[1.8]">
                           <span>{cat.nameUr || cat.nameAr}</span>
-                          <span className="text-xs sm:text-sm font-normal opacity-75">
+                          <span className="font-amiri text-base sm:text-lg font-bold opacity-90" lang="ar">
                             ({cat.nameAr})
                           </span>
                         </h4>
