@@ -12,16 +12,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Gulzar&family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/jameel-noori@1.1.2/jameel-noori.min.css" rel="stylesheet">
   </head>
   <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-600 selection:text-white antialiased font-nastaleeq" style="background-color: #080808; color: #ffffff;">
     <div id="root">
-      <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #080808; color: #22c55e;">
+      <div id="root-spinner" style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #080808; color: #22c55e; padding: 24px; text-align: center;">
         <div style="width: 44px; height: 44px; border: 3px solid #13351d; border-top-color: #22c55e; border-radius: 50%; animation: spin 0.9s linear infinite;"></div>
-        <p style="margin-top: 18px; color: #a1a1aa; font-size: 15px; direction: rtl; font-family: sans-serif;">مکتبہ شاملہ لوڈ ہو رہا ہے...</p>
+        <p style="margin-top: 18px; color: #e4e4e7; font-size: 16px; direction: rtl; font-family: sans-serif; font-weight: 500;">مکتبہ شاملہ لوڈ ہو رہا ہے...</p>
+        <p style="margin-top: 6px; color: #71717a; font-size: 13px; direction: rtl; font-family: sans-serif;">کتب خانہ تیار کیا جا رہا ہے، براہ کرم انتظار فرمائیں</p>
+        
+        <div id="loading-watchdog" style="display: none; margin-top: 24px; max-width: 360px; padding: 16px; border-radius: 16px; background-color: #18181b; border: 1px solid #27272a;">
+          <p style="color: #a1a1aa; font-size: 13px; margin-bottom: 12px; direction: rtl; font-family: sans-serif;">
+            لوڈ ہونے میں معمول سے زیادہ وقت لگ رہا ہے؟
+          </p>
+          <div style="display: flex; gap: 8px; justify-content: center;">
+            <button onclick="window.location.reload()" style="background-color: #22c55e; color: #ffffff; border: none; padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: bold; cursor: pointer; font-family: sans-serif;">
+              دوبارہ کوشش کریں (Reload)
+            </button>
+            <button onclick="try{localStorage.clear()}catch(e){}window.location.reload()" style="background-color: #27272a; color: #e4e4e7; border: 1px solid #3f3f46; padding: 8px 16px; border-radius: 10px; font-size: 12px; cursor: pointer; font-family: sans-serif;">
+              کیشے صاف کریں (Reset)
+            </button>
+          </div>
+        </div>
+
         <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
       </div>
     </div>
+    <script>
+      setTimeout(function() {
+        var w = document.getElementById('loading-watchdog');
+        if (w) w.style.display = 'block';
+      }, 4000);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

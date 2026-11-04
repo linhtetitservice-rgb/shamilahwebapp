@@ -20,13 +20,25 @@ import {
 import firebaseConfig from '../../firebase-applet-config.json';
 import { BookCategory, ShamelaBook } from '../types';
 
-// 1. Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// 1. Initialize Firebase safely
+let app: any;
+let dbInstance: any;
+let authInstance: any;
+let googleProviderInstance: any;
 
-// CRITICAL: The app will break without passing firestoreDatabaseId
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
-export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
+try {
+  app = initializeApp(firebaseConfig);
+  // CRITICAL: The app will break without passing firestoreDatabaseId
+  dbInstance = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+  authInstance = getAuth(app);
+  googleProviderInstance = new GoogleAuthProvider();
+} catch (err) {
+  console.error('Firebase initialization warning:', err);
+}
+
+export const db = dbInstance;
+export const auth = authInstance;
+export const googleProvider = googleProviderInstance;
 
 // 2. Error handling per skill specification
 export enum OperationType {
@@ -64,7 +76,7 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
       emailVerified: auth.currentUser?.emailVerified,
       isAnonymous: auth.currentUser?.isAnonymous,
       tenantId: auth.currentUser?.tenantId,
-      providerInfo: auth.currentUser?.providerData?.map((provider) => ({
+      providerInfo: auth?.currentUser?.providerData?.map((provider: any) => ({
         providerId: provider.providerId,
         email: provider.email,
       })) || [],
@@ -78,19 +90,22 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
 
 // 3. Test Connection
 export async function testConnection(): Promise<boolean> {
+  if (!db) return false;
   try {
     await getDocFromServer(doc(db, 'test', 'connection'));
     return true;
   } catch (error) {
     if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.error('Please check your Firebase configuration.');
+      console.warn('Firebase client is offline or network is slow.');
       return false;
     }
     // permission-denied is expected on /test/connection since it is not matched in rules
     return true;
   }
 }
-testConnection();
+if (typeof window !== 'undefined' && db) {
+  testConnection().catch((e) => console.warn('testConnection failed gracefully', e));
+}
 
 // 4. Auth Methods
 export async function signInWithGoogle(): Promise<User | null> {

@@ -31,11 +31,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    if (!auth) {
       setLoading(false);
-    });
-    return () => unsubscribe();
+      return;
+    }
+
+    let isMounted = true;
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (currentUser) => {
+        if (isMounted) {
+          setUser(currentUser);
+          setLoading(false);
+        }
+      },
+      (error) => {
+        console.warn('Firebase Auth State Notice:', error);
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
+    );
+
+    // Watchdog timer: Guarantee loading resolves within 2 seconds
+    const timer = setTimeout(() => {
+      if (isMounted) {
+        setLoading(false);
+      }
+    }, 2000);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+      unsubscribe();
+    };
   }, []);
 
   const login = async () => {

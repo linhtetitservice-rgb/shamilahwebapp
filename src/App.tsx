@@ -105,7 +105,11 @@ function LibraryApp() {
         }
       },
       (error) => {
-        handleFirestoreError(error, OperationType.GET, booksPath);
+        try {
+          handleFirestoreError(error, OperationType.GET, booksPath);
+        } catch (e) {
+          console.warn('Real-time sync notice (books):', e);
+        }
       }
     );
 
@@ -128,7 +132,11 @@ function LibraryApp() {
         }
       },
       (error) => {
-        handleFirestoreError(error, OperationType.GET, categoriesPath);
+        try {
+          handleFirestoreError(error, OperationType.GET, categoriesPath);
+        } catch (e) {
+          console.warn('Real-time sync notice (categories):', e);
+        }
       }
     );
 
