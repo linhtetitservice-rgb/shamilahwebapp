@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>المكتبة الشاملة - جامع الکتب والبحوث (مکتبہ شاملہ ویب لائبریری)</title>
-    <meta name="description" content="مکتبہ شاملہ کی کتب کی فہرست، آسان تلاش، آن لائن مطالعہ اور ذاتی لائبریری مینجمنٹ سسٹم" />
-    <meta property="og:title" content="المكتبة الشاملة - ویب لائبریری" />
-    <meta property="og:description" content="مکتبہ شاملہ کی کتب کی فہرست، آسان تلاش، آن لائن مطالعہ اور ذاتی لائبریری مینجمنٹ سسٹم" />
+    <title>Maktabah Shamela Web Library (ရှာမီလာ စာအုပ်စင်)</title>
+    <meta name="description" content="Maktabah Shamela စာအုပ် web link များကို အကန့်ခွဲ၍ စနစ်တကျ သိမ်းဆည်း၊ စီမံ၊ တိုက်ရိုက်ဖတ်ရှုနိုင်သော စာအုပ်စင် Web App" />
+    <meta property="og:title" content="Maktabah Shamela Web Library (ရှာမီလာ စာအုပ်စင်)" />
+    <meta property="og:description" content="Maktabah Shamela စာအုပ် web link များကို အကန့်ခွဲ၍ စနစ်တကျ သိမ်းဆည်း၊ စီမံ၊ တိုက်ရိုက်ဖတ်ရှုနိုင်သော စာအုပ်စင် Web App" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Gulzar&family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jameel-noori@1.1.2/jameel-noori.min.css" rel="stylesheet">
   </head>
-  <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-600 selection:text-white antialiased font-nastaleeq">
-    <div id="root"></div>
+  <body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-emerald-600 selection:text-white antialiased font-nastaleeq" style="background-color: #080808; color: #ffffff;">
+    <div id="root">
+      <div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #080808; color: #22c55e;">
+        <div style="width: 44px; height: 44px; border: 3px solid #13351d; border-top-color: #22c55e; border-radius: 50%; animation: spin 0.9s linear infinite;"></div>
+        <p style="margin-top: 18px; color: #a1a1aa; font-size: 15px; direction: rtl; font-family: sans-serif;">مکتبہ شاملہ لوڈ ہو رہا ہے...</p>
+        <style>@keyframes spin{to{transform:rotate(360deg)}}</style>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
