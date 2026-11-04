@@ -31,6 +31,8 @@ export interface ShamelaBook {
 
 export type ViewMode = 'shelf' | 'compact' | 'by-category';
 
+export type BookSortOption = 'recently-added' | 'last-opened' | 'alphabetical';
+
 // ==========================================
 // Theme Configurations matching User Screenshots
 // ==========================================

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ShamelaBook, BookCategory, ViewMode } from './types';
+import { ShamelaBook, BookCategory, ViewMode, BookSortOption } from './types';
 import { 
   getStoredCategories, 
   saveCategories, 
@@ -52,6 +52,7 @@ function LibraryApp() {
   const [books, setBooks] = useState<ShamelaBook[]>(() => getStoredBooks());
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [viewMode, setViewMode] = useState<ViewMode>('shelf');
+  const [sortBy, setSortBy] = useState<BookSortOption>('recently-added');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Modals state
@@ -176,8 +177,21 @@ function LibraryApp() {
       });
     }
 
+    // Apply Sorting
+    if (sortBy === 'recently-added') {
+      result.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    } else if (sortBy === 'last-opened') {
+      result.sort((a, b) => (b.lastOpenedAt || 0) - (a.lastOpenedAt || 0));
+    } else if (sortBy === 'alphabetical') {
+      result.sort((a, b) => {
+        const titleA = (a.titleUr || a.titleAr || '').trim();
+        const titleB = (b.titleUr || b.titleAr || '').trim();
+        return titleA.localeCompare(titleB, 'ur', { sensitivity: 'base' });
+      });
+    }
+
     return result;
-  }, [books, activeCategory, searchQuery]);
+  }, [books, activeCategory, searchQuery, sortBy]);
 
   // Book Handlers
   const handleSaveBook = async (bookData: Partial<ShamelaBook>) => {
@@ -436,6 +450,8 @@ function LibraryApp() {
         favoriteCount={favoriteCount}
         viewMode={viewMode}
         onChangeViewMode={setViewMode}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
         onOpenAddCategory={() => setIsCategoryModalOpen(true)}
       />
 

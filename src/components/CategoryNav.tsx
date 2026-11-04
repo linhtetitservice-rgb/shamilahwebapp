@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookCategory, ViewMode } from '../types';
+import { BookCategory, ViewMode, BookSortOption } from '../types';
 import { 
   BookOpen, 
   Scroll, 
@@ -13,7 +13,8 @@ import {
   LayoutGrid,
   List,
   Library,
-  Layers
+  Layers,
+  ArrowUpDown
 } from 'lucide-react';
 
 interface CategoryNavProps {
@@ -25,6 +26,8 @@ interface CategoryNavProps {
   favoriteCount: number;
   viewMode: ViewMode;
   onChangeViewMode: (mode: ViewMode) => void;
+  sortBy: BookSortOption;
+  onSortChange: (sort: BookSortOption) => void;
   onOpenAddCategory: () => void;
 }
 
@@ -37,6 +40,8 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
   favoriteCount,
   viewMode,
   onChangeViewMode,
+  sortBy,
+  onSortChange,
   onOpenAddCategory,
 }) => {
   const getCategoryIcon = (iconName?: string) => {
@@ -165,48 +170,87 @@ export const CategoryNav: React.FC<CategoryNavProps> = ({
 
           </div>
 
-          {/* View Mode Controls */}
-          <div className="flex items-center justify-start gap-1 shrink-0 self-start sm:self-center">
-            <span className="text-[11px] opacity-70 ml-1 hidden sm:inline leading-[1.8]">ترتیب:</span>
+          {/* Sorting and View Mode Controls */}
+          <div className="flex items-center justify-between sm:justify-start gap-2 shrink-0 self-stretch sm:self-center">
             
-            <button
-              onClick={() => onChangeViewMode('shelf')}
-              className="p-1.5 rounded-lg border transition-all"
+            {/* Sorting Dropdown */}
+            <div 
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border transition-all text-xs"
               style={{
-                backgroundColor: viewMode === 'shelf' ? 'var(--color-accent-subtle)' : 'transparent',
-                borderColor: viewMode === 'shelf' ? 'var(--color-accent)' : 'var(--color-border-theme)',
-                color: viewMode === 'shelf' ? 'var(--color-accent)' : 'inherit',
+                backgroundColor: 'var(--color-bg-card)',
+                borderColor: 'var(--color-border-theme)',
               }}
-              title="شیلف کارڈز (Shelf Cards)"
             >
-              <LayoutGrid className="w-4 h-4" />
-            </button>
+              <ArrowUpDown className="w-3.5 h-3.5 shrink-0 opacity-80" style={{ color: 'var(--color-accent)' }} />
+              <label htmlFor="book-sort-select" className="text-[11px] opacity-75 hidden sm:inline leading-[1.8] whitespace-nowrap">
+                ترتیب:
+              </label>
+              <select
+                id="book-sort-select"
+                value={sortBy}
+                onChange={(e) => onSortChange(e.target.value as BookSortOption)}
+                className="bg-transparent focus:outline-none cursor-pointer text-xs font-semibold font-nastaleeq leading-[1.8] py-0.5 outline-none"
+                style={{ color: 'var(--color-text-primary)' }}
+                title="کتب کی ترتیب تبدیل کریں"
+              >
+                <option value="recently-added" className="bg-[var(--color-bg-card)] text-[var(--color-text-primary)]">
+                  حالیہ شامل شدہ (Recently Added)
+                </option>
+                <option value="last-opened" className="bg-[var(--color-bg-card)] text-[var(--color-text-primary)]">
+                  حالیہ مطالعہ شدہ (Last Opened)
+                </option>
+                <option value="alphabetical" className="bg-[var(--color-bg-card)] text-[var(--color-text-primary)]">
+                  بلحاظ حروف تہجی (Alphabetical)
+                </option>
+              </select>
+            </div>
 
-            <button
-              onClick={() => onChangeViewMode('by-category')}
-              className="p-1.5 rounded-lg border transition-all"
-              style={{
-                backgroundColor: viewMode === 'by-category' ? 'var(--color-accent-subtle)' : 'transparent',
-                borderColor: viewMode === 'by-category' ? 'var(--color-accent)' : 'var(--color-border-theme)',
-                color: viewMode === 'by-category' ? 'var(--color-accent)' : 'inherit',
-              }}
-              title="بلحاظ زمرہ جات شیلف (By Category Shelves)"
-            >
-              <Library className="w-4 h-4" />
-            </button>
+            {/* Separator */}
+            <span className="h-5 w-[1px] opacity-25 bg-current hidden sm:inline-block" />
 
-            <button
-              onClick={() => onChangeViewMode('compact')}
-              className="p-1.5 rounded-lg border transition-all"
-              style={{
-                backgroundColor: viewMode === 'compact' ? 'var(--color-accent-subtle)' : 'transparent',
-                borderColor: viewMode === 'compact' ? 'var(--color-accent)' : 'var(--color-border-theme)',
-                color: viewMode === 'compact' ? 'var(--color-accent)' : 'inherit',
-              }}
-              title="فہرست جدول (Compact Table List)"
-            >
-              <List className="w-4 h-4" />
-            </button>
+            {/* View Mode Controls */}
+            <div className="flex items-center gap-1">
+              <span className="text-[11px] opacity-70 ml-1 hidden lg:inline leading-[1.8]">طرز نمائش:</span>
+              
+              <button
+                onClick={() => onChangeViewMode('shelf')}
+                className="p-1.5 rounded-lg border transition-all"
+                style={{
+                  backgroundColor: viewMode === 'shelf' ? 'var(--color-accent-subtle)' : 'transparent',
+                  borderColor: viewMode === 'shelf' ? 'var(--color-accent)' : 'var(--color-border-theme)',
+                  color: viewMode === 'shelf' ? 'var(--color-accent)' : 'inherit',
+                }}
+                title="شیلف کارڈز (Shelf Cards)"
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => onChangeViewMode('by-category')}
+                className="p-1.5 rounded-lg border transition-all"
+                style={{
+                  backgroundColor: viewMode === 'by-category' ? 'var(--color-accent-subtle)' : 'transparent',
+                  borderColor: viewMode === 'by-category' ? 'var(--color-accent)' : 'var(--color-border-theme)',
+                  color: viewMode === 'by-category' ? 'var(--color-accent)' : 'inherit',
+                }}
+                title="بلحاظ زمرہ جات شیلف (By Category Shelves)"
+              >
+                <Library className="w-4 h-4" />
+              </button>
+
+              <button
+                onClick={() => onChangeViewMode('compact')}
+                className="p-1.5 rounded-lg border transition-all"
+                style={{
+                  backgroundColor: viewMode === 'compact' ? 'var(--color-accent-subtle)' : 'transparent',
+                  borderColor: viewMode === 'compact' ? 'var(--color-accent)' : 'var(--color-border-theme)',
+                  color: viewMode === 'compact' ? 'var(--color-accent)' : 'inherit',
+                }}
+                title="فہرست جدول (Compact Table List)"
+              >
+                <List className="w-4 h-4" />
+              </button>
+            </div>
 
           </div>
 
