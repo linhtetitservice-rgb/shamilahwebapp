@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile and app settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "selectedTheme": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "BookCategory": {
+      "title": "BookCategory",
+      "description": "User custom or default book shelf category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "nameMm": { "type": "string", "maxLength": 256 },
+        "nameAr": { "type": "string", "maxLength": 256 },
+        "description": { "type": "string", "maxLength": 1024 },
+        "iconName": { "type": "string", "maxLength": 64 },
+        "colorTheme": { "type": "string", "maxLength": 64 },
+        "order": { "type": "number" },
+        "userId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "nameMm", "userId"]
+    },
+    "ShamelaBook": {
+      "title": "ShamelaBook",
+      "description": "A saved Maktabah Shamela book in the user library",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "titleAr": { "type": "string", "maxLength": 512 },
+        "titleMm": { "type": "string", "maxLength": 512 },
+        "authorAr": { "type": "string", "maxLength": 256 },
+        "authorMm": { "type": "string", "maxLength": 256 },
+        "categoryId": { "type": "string", "maxLength": 128 },
+        "shamelaId": { "type": "string", "maxLength": 64 },
+        "url": { "type": "string", "maxLength": 1024 },
+        "volumes": { "type": "string", "maxLength": 128 },
+        "pages": { "type": "string", "maxLength": 128 },
+        "notes": { "type": "string", "maxLength": 4096 },
+        "isFavorite": { "type": "boolean" },
+        "userId": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "number" },
+        "lastOpenedAt": { "type": "number" }
+      },
+      "required": ["id", "titleAr", "titleMm", "categoryId", "url", "userId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile document storing preference and sync info"
+    },
+    "/users/{userId}/categories/{categoryId}": {
+      "schema": "BookCategory",
+      "description": "User custom shelves and categories"
+    },
+    "/users/{userId}/books/{bookId}": {
+      "schema": "ShamelaBook",
+      "description": "User saved Shamela book links and metadata"
+    }
+  }
+}

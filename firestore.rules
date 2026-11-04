@@ -1,0 +1,82 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net (Default-Deny)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation for UserProfile
+    function isValidUserProfile(data) {
+      return data.uid is string && data.uid == request.auth.uid &&
+             data.email is string && data.email.size() <= 256;
+    }
+
+    // Validation for BookCategory
+    function isValidCategory(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.nameMm is string && data.nameMm.size() > 0 && data.nameMm.size() <= 256 &&
+             data.userId is string && data.userId == request.auth.uid;
+    }
+
+    // Validation for ShamelaBook
+    function isValidBook(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.titleAr is string && data.titleAr.size() <= 512 &&
+             data.titleMm is string && data.titleMm.size() <= 512 &&
+             data.categoryId is string && data.categoryId.size() <= 128 &&
+             data.url is string && data.url.size() <= 1024 &&
+             data.userId is string && data.userId == request.auth.uid;
+    }
+
+    // User Profile Document
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUserProfile(incoming());
+      allow update: if isOwner(userId) && isValidUserProfile(incoming()) &&
+                       incoming().uid == existing().uid;
+      allow delete: if isOwner(userId);
+
+      // User's Categories Subcollection
+      match /categories/{categoryId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(categoryId) && isValidCategory(incoming());
+        allow update: if isOwner(userId) && isValidId(categoryId) && isValidCategory(incoming()) &&
+                         incoming().userId == existing().userId;
+        allow delete: if isOwner(userId) && isValidId(categoryId);
+      }
+
+      // User's Saved Books Subcollection
+      match /books/{bookId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidId(bookId) && isValidBook(incoming());
+        allow update: if isOwner(userId) && isValidId(bookId) && isValidBook(incoming()) &&
+                         incoming().userId == existing().userId;
+        allow delete: if isOwner(userId) && isValidId(bookId);
+      }
+    }
+  }
+}

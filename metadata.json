@@ -1,0 +1,6 @@
+{
+  "name": "Maktabah Shamela Web Library (ရှာမီလာ စာအုပ်စင်)",
+  "description": "Maktabah Shamela စာအုပ် web link များကို အကန့်ခွဲ၍ စနစ်တကျ သိမ်းဆည်း၊ စီမံ၊ တိုက်ရိုက်ဖတ်ရှုနိုင်သော စာအုပ်စင် Web App",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

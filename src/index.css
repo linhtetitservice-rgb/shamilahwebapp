@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq';
+  src: url('https://cdn.jsdelivr.net/npm/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2'),
+       url('https://unpkg.com/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JameelNooriNastaliq';
+  src: url('https://cdn.jsdelivr.net/npm/jameel-noori/fonts/jameel-noori-nastaleeq4.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --color-bg-app: #080808;
+  --color-bg-card: #181818;
+  --color-bg-card-subtle: #222222;
+  --color-bg-header: #121212;
+  --color-border-theme: #13351d;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa;
+  --color-accent: #22c55e;
+  --color-accent-hover: #16a34a;
+  --color-accent-subtle: #052e16;
+  --color-accent-text: #ffffff;
+  --color-badge-bg: #092d16;
+}
+
+@layer base {
+  body {
+    font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', 'Plus Jakarta Sans', serif;
+    background-color: var(--color-bg-app);
+    color: var(--color-text-primary);
+    direction: rtl;
+  }
+}
+
+/* Jameel Noori Nastaleeq Typography for all Arabic & Urdu text */
+.font-nastaleeq,
+.font-urdu,
+.font-arabic,
+html,
+body,
+button,
+input,
+select,
+textarea,
+[dir="rtl"],
+[lang="ar"],
+[lang="ur"] {
+  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', 'Urdu Typesetting', 'Mehr Nastaliq', serif !important;
+}
+
+/* Nastaleeq cascading calligraphy text with spacious line height */
+.nastaleeq-text {
+  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', serif;
+  line-height: 2.2;
+  word-spacing: 1px;
+}
+
+/* Custom scrollbar for library shelves */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-hover);
+}
