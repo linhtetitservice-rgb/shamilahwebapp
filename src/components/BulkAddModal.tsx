@@ -234,8 +234,8 @@ https://shamela.ws/book/1728 | رياض الصالحين | امام نووی`;
                       borderColor: 'var(--color-border-theme)',
                     }}
                   >
-                    <span className="font-medium truncate max-w-[200px] leading-[1.8]">
-                      {item.titleUr || item.titleAr}
+                    <span className="font-amiri arabic-title font-bold text-sm sm:text-base truncate max-w-[220px] leading-[1.8]" lang="ar">
+                      {item.titleAr || item.titleUr}
                     </span>
                     <span className="font-mono text-[11px] opacity-80 truncate max-w-[220px]" dir="ltr">
                       {item.url}

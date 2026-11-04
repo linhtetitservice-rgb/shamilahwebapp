@@ -142,7 +142,7 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
             </div>
             <div className="truncate">
               <div className="flex items-center gap-2">
-                <h2 className="font-amiri text-2xl sm:text-3xl font-bold truncate leading-normal" lang="ar">
+                <h2 className="font-amiri arabic-title text-2xl sm:text-3xl font-bold truncate leading-normal" lang="ar">
                   {book.titleAr}
                 </h2>
                 {book.shamelaId && (
@@ -157,8 +157,16 @@ export const ReaderModal: React.FC<ReaderModalProps> = ({
                   </span>
                 )}
               </div>
-              <p className="font-nastaleeq text-sm opacity-90 truncate leading-[1.8] mt-0.5">
-                {book.titleUr || book.titleMm} {book.authorUr ? `• (${book.authorUr})` : ''}
+              <p className="font-nastaleeq text-sm opacity-90 truncate leading-[1.8] mt-0.5 flex items-center gap-1.5 flex-wrap">
+                <span>{book.titleUr || book.titleMm}</span>
+                {book.authorAr && (
+                  <span className="font-amiri arabic-author font-bold opacity-90 text-sm" lang="ar">
+                    • {book.authorAr}
+                  </span>
+                )}
+                {book.authorUr && !book.authorAr && (
+                  <span>• ({book.authorUr})</span>
+                )}
               </p>
             </div>
           </div>

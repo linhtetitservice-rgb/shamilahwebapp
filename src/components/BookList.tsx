@@ -100,7 +100,7 @@ export const BookList: React.FC<BookListProps> = ({
 
                 {/* Title in Amiri Font */}
                 <td className="py-3 px-4">
-                  <div className="font-amiri text-xl sm:text-2xl font-bold leading-normal" lang="ar">
+                  <div className="font-amiri arabic-title text-xl sm:text-2xl font-bold leading-normal" lang="ar">
                     {book.titleAr}
                   </div>
                   {(book.titleUr || book.titleMm) && (
@@ -112,7 +112,7 @@ export const BookList: React.FC<BookListProps> = ({
 
                 {/* Author in Amiri Font */}
                 <td className="py-3 px-4 opacity-90 leading-[1.8]">
-                  <div className="font-amiri text-base sm:text-lg font-bold" lang="ar">
+                  <div className="font-amiri arabic-author text-base sm:text-lg font-bold" lang="ar">
                     {book.authorAr || '-'}
                   </div>
                   {(book.authorUr || book.authorMm) && (

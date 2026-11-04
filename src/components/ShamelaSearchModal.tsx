@@ -408,11 +408,11 @@ export const ShamelaSearchModal: React.FC<ShamelaSearchModalProps> = ({
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2 flex-wrap">
                           <span 
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-bold text-white leading-[1.8]"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-xs sm:text-sm font-bold text-white leading-[1.8]"
                             style={{ backgroundColor: 'var(--color-accent)' }}
                           >
                             <BookOpen className="w-3.5 h-3.5 ml-1" />
-                            <span>{item.bookTitle}</span>
+                            <span className="font-amiri arabic-title font-bold" lang="ar">{item.bookTitle}</span>
                           </span>
 
                           <span 
@@ -553,11 +553,11 @@ export const ShamelaSearchModal: React.FC<ShamelaSearchModalProps> = ({
                         )}
                       </div>
 
-                      <h4 className="text-xl sm:text-2xl font-bold mb-1 text-right leading-[2]">
+                      <h4 className="font-amiri arabic-title text-xl sm:text-2xl font-bold mb-1 text-right leading-[1.8]" lang="ar">
                         {b.title}
                       </h4>
                       {b.author && (
-                        <p className="text-sm opacity-75 text-right mb-3 leading-[1.8]">
+                        <p className="font-amiri arabic-author text-sm sm:text-base opacity-85 text-right mb-3 leading-[1.8]" lang="ar">
                           المؤلف: {b.author}
                         </p>
                       )}

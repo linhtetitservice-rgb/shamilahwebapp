@@ -181,7 +181,7 @@ export const BookCard: React.FC<BookCardProps> = ({
           className="cursor-pointer group/title"
         >
           <h3 
-            className="font-amiri text-2xl sm:text-3xl font-bold text-right mb-2 line-clamp-2 leading-[1.7] tracking-normal transition-colors group-hover/title:text-[var(--color-accent)]"
+            className="font-amiri arabic-title text-2xl sm:text-3xl font-bold text-right mb-2 line-clamp-2 leading-[1.7] tracking-normal transition-colors group-hover/title:text-[var(--color-accent)]"
             style={{ color: 'var(--color-text-primary)' }}
             lang="ar"
           >
@@ -199,7 +199,7 @@ export const BookCard: React.FC<BookCardProps> = ({
         {/* Author information */}
         <div className="space-y-1 mb-3 leading-[1.8]">
           {book.authorAr && (
-            <p className="font-amiri text-right text-base sm:text-lg font-bold line-clamp-1 opacity-90" lang="ar">
+            <p className="font-amiri arabic-author text-right text-base sm:text-lg font-bold line-clamp-1 opacity-90" lang="ar">
               {book.authorAr}
             </p>
           )}

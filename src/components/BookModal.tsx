@@ -244,12 +244,13 @@ export const BookModal: React.FC<BookModalProps> = ({
                 value={titleAr}
                 onChange={(e) => setTitleAr(e.target.value)}
                 placeholder="صحيح البخاري"
-                className="w-full px-3.5 py-2.5 rounded-xl border text-lg sm:text-xl focus:outline-none focus:ring-2 leading-[1.8]"
+                className="w-full px-3.5 py-2.5 rounded-xl border text-lg sm:text-xl focus:outline-none focus:ring-2 leading-[1.8] font-amiri arabic-title font-bold"
                 style={{
                   backgroundColor: 'var(--color-bg-app)',
                   borderColor: 'var(--color-border-theme)',
                   color: 'var(--color-text-primary)',
                 }}
+                lang="ar"
                 required
               />
             </div>
@@ -285,12 +286,13 @@ export const BookModal: React.FC<BookModalProps> = ({
                 value={authorAr}
                 onChange={(e) => setAuthorAr(e.target.value)}
                 placeholder="محمد بن إسماعيل البخاري"
-                className="w-full px-3.5 py-2 rounded-xl border text-base focus:outline-none focus:ring-2 leading-[1.8]"
+                className="w-full px-3.5 py-2 rounded-xl border text-base sm:text-lg focus:outline-none focus:ring-2 leading-[1.8] font-amiri arabic-author font-bold"
                 style={{
                   backgroundColor: 'var(--color-bg-app)',
                   borderColor: 'var(--color-border-theme)',
                   color: 'var(--color-text-primary)',
                 }}
+                lang="ar"
               />
             </div>
 

@@ -5,11 +5,27 @@
 .font-arabic,
 [lang="ar"],
 .arabic-title,
+.arabic-author,
 .arabic-text,
 .arabic-quote {
   font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Noto Naskh Arabic', serif !important;
   font-feature-settings: "cv01" on, "cv02" on;
   letter-spacing: 0.01em;
+}
+
+/* Ensure all Arabic book titles, author names, and .font-amiri elements have a minimum font-size of 1.1rem for better readability */
+.font-amiri {
+  font-size: max(1.1rem, 1em);
+}
+
+.arabic-title {
+  font-size: max(1.1rem, 1.25rem);
+  font-weight: 700;
+}
+
+.arabic-author {
+  font-size: max(1.1rem, 1.1rem);
+  font-weight: 600;
 }
 
 /* 2. Urdu Calligraphy - Nastaleeq Typography */
