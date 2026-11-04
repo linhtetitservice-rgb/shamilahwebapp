@@ -8,7 +8,9 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = Number(process.env.PORT) || 3000;
+const portArgIndex = process.argv.indexOf('--port');
+const cliPort = portArgIndex !== -1 ? Number(process.argv[portArgIndex + 1]) : null;
+const PORT = cliPort || Number(process.env.PORT) || 3000;
 const SHAMELA_MCP_URL = 'https://mcp.shamela.ws';
 
 // Myanmar & English to Arabic search keyword mapper
@@ -288,11 +290,12 @@ async function startServer() {
   const distPath = path.resolve(__dirname, 'dist');
   const distIndexHtml = path.resolve(distPath, 'index.html');
   const hasDist = fs.existsSync(distIndexHtml);
-  const isProduction = process.env.NODE_ENV === 'production';
+  const isProduction = process.env.NODE_ENV === 'production' || process.env.SERVE_DIST === 'true';
 
   if (isProduction && hasDist) {
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/api')) return next();
       res.sendFile(distIndexHtml);
     });
   } else {
@@ -304,6 +307,19 @@ async function startServer() {
       appType: 'spa',
     });
     app.use(vite.middlewares);
+
+    app.get('*', async (req, res, next) => {
+      if (req.path.startsWith('/api')) return next();
+      try {
+        const indexHtmlPath = path.resolve(__dirname, 'index.html');
+        if (!fs.existsSync(indexHtmlPath)) return next();
+        let template = fs.readFileSync(indexHtmlPath, 'utf-8');
+        template = await vite.transformIndexHtml(req.originalUrl, template);
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
+      } catch (e) {
+        next(e);
+      }
+    });
   }
 
   app.listen(PORT, '0.0.0.0', () => {

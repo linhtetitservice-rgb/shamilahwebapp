@@ -41,7 +41,7 @@
   }
 }
 
-/* Jameel Noori Nastaleeq Typography for all Arabic & Urdu text */
+/* Jameel Noori Nastaleeq Typography for all Arabic & Urdu text with instant system fallback */
 .font-nastaleeq,
 .font-urdu,
 .font-arabic,
@@ -54,7 +54,7 @@ textarea,
 [dir="rtl"],
 [lang="ar"],
 [lang="ur"] {
-  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', 'Urdu Typesetting', 'Mehr Nastaliq', serif !important;
+  font-family: 'Jameel Noori Nastaleeq', 'JameelNooriNastaliq', 'Noto Nastaliq Urdu', 'Gulzar', 'Urdu Typesetting', 'Mehr Nastaliq', 'Traditional Arabic', system-ui, -apple-system, sans-serif !important;
 }
 
 /* Nastaleeq cascading calligraphy text with spacious line height */
